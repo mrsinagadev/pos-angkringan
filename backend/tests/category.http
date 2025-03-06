@@ -1,0 +1,27 @@
+### get all category
+GET {{BASE_URL}}/categorys
+Authorization: Bearer {{$global.accessToken}}
+
+### get category by id
+GET {{BASE_URL}}/categorys/1
+Authorization: Bearer {{$global.accessToken}}
+
+### create category
+POST {{BASE_URL}}/categorys
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+  "kategoryName": "Minuman 1"
+}
+
+### update category
+PUT {{BASE_URL}}/categorys/2
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+  "kategoryName": "Minuman Alcohol"
+}
+
+### delete category
+DELETE {{BASE_URL}}/categorys/2
+Authorization: Bearer {{$global.accessToken}}

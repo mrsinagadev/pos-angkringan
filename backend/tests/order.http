@@ -1,0 +1,50 @@
+### create order
+POST {{BASE_URL}}/orders/1
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "date": "2024-12-19T03:47:24.000Z",
+    "total": "120000",
+    "ppn": "13200",
+    "grandTotal": "133200",
+    "detail": [
+        {
+            "price": "25000",
+            "productName": "Sample Product",
+            "qty": 2,
+            "totalPrice": "50000",
+            "note": "pedas",
+            "productId": 1
+        }
+    ]
+}
+
+### get order by id
+GET {{BASE_URL}}/orders/1
+Authorization: Bearer {{$global.accessToken}}
+
+### get all orders
+GET {{BASE_URL}}/orders
+Authorization: Bearer {{$global.accessToken}}
+
+### generate pdf
+POST {{BASE_URL}}/orders-pdf
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "startDate":"2025-01-01",
+    "endDate":"2025-02-17"
+}
+
+### generate excel
+POST {{BASE_URL}}/orders-excel
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "startDate":"2025-01-01",
+    "endDate":"2025-02-12"
+}
+
+### order yearly
+GET {{BASE_URL}}/orders-year
+Authorization: Bearer {{$global.accessToken}}

@@ -1,0 +1,25 @@
+@media print {
+    @page {
+      font-size: 10px !important;
+      color: #000 !important;
+      width: 80mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    #mediaBorder {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      margin-top: -15px !important;
+      margin-bottom: -50px !important;
+      color: #000 !important;
+      /* font-size: 12px !important;
+      width: 70mm !important; */
+    }
+    .print {
+      visibility: hidden;
+    }
+    #divToPrint {
+      visibility: visible;
+    }
+  }

@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id           Int       @id @default(autoincrement())
+  kategoryName String
+  Product      Product[]
+}
+
+model Product {
+  id                Int                 @id @default(autoincrement())
+  code              String              @unique
+  barcode           String?
+  productName       String
+  image             String
+  url               String
+  qty               Int
+  price             Decimal
+  kategoryId        Int
+  supplierId        Int
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  kategory          Category            @relation(fields: [kategoryId], references: [id])
+  supplier          Supplier            @relation(fields: [supplierId], references: [id])
+  Carts             Carts[]
+  Orderdetail       Orderdetail[]
+  Orderreturndetail Orderreturndetail[]
+  Purchasedetail    Purchasedetail[]
+}
+
+model Supplier {
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  phone     String
+  email     String?
+  address   String
+  Product   Product[]
+}
+
+model Carts {
+  id          Int     @id @default(autoincrement())
+  price       Decimal
+  productName String
+  qty         Int
+  totalPrice  Decimal
+  note        String
+  productId   Int
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+model Orders {
+  id          Int           @id @default(autoincrement())
+  date        DateTime      @default(now())
+  code        String        @unique
+  total       Decimal
+  ppn         Decimal
+  grandTotal  Decimal
+  userId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  Orderdetail Orderdetail[]
+  Orderreturn Orderreturn[]
+}
+
+model Orderdetail {
+  id          Int     @id @default(autoincrement())
+  price       Decimal
+  productName String
+  qty         Int
+  totalPrice  Decimal
+  note        String
+  productId   Int
+  orderId     Int
+  order       Orders  @relation(fields: [orderId], references: [id])
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  userName    String        @unique
+  password    String
+  name        String
+  role        String
+  Carts       Carts[]
+  Orders      Orders[]
+  Orderreturn Orderreturn[]
+  Purchase    Purchase[]
+}
+
+model Orderreturn {
+  id                Int                 @id @default(autoincrement())
+  code              String
+  date              DateTime            @default(now())
+  note              String?
+  orderId           Int
+  userId            Int
+  user              User                @relation(fields: [userId], references: [id])
+  order             Orders              @relation(fields: [orderId], references: [id])
+  Orderreturndetail Orderreturndetail[]
+}
+
+model Orderreturndetail {
+  id          Int         @id @default(autoincrement())
+  productId   Int
+  productName String
+  price       Decimal
+  qty         Int
+  total       Decimal
+  returnId    Int
+  orderreturn Orderreturn @relation(fields: [returnId], references: [id])
+  product     Product     @relation(fields: [productId], references: [id])
+}
+
+model Purchase {
+  id             Int              @id @default(autoincrement())
+  code           String
+  date           DateTime
+  note           String
+  total          Decimal
+  ppn            Decimal
+  grandTotal     Decimal
+  userId         Int
+  user           User             @relation(fields: [userId], references: [id])
+  Purchasedetail Purchasedetail[]
+}
+
+model Purchasedetail {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  productName String
+  price       Decimal
+  qty         Int
+  total       Decimal
+  purchaseId  Int
+  purchase    Purchase @relation(fields: [purchaseId], references: [id])
+  product     Product  @relation(fields: [productId], references: [id])
+}

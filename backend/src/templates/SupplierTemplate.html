@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Supplier</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Supplier</h1>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>No Telpon</th>
+            <th>Email</th>
+            <th>Alamat</th>
+        </tr>
+        {{#each suppliers}}
+            <tr>
+                <td>{{this.no}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.address}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+</html>

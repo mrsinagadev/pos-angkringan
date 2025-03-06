@@ -1,0 +1,22 @@
+### create order return
+POST {{BASE_URL}}/order-returns
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "date": "2024-12-19",
+    "note": "testing",
+    "userId": 1,
+    "orderId": 1,
+    "detail": [
+    { 
+      "product": { 
+        "productId": 1, 
+        "productName": "Sample Product", 
+        "price": 25000 
+      },
+        "qty":1,
+        "price":25000,
+        "totalPrice":25000
+    }
+  ]
+}

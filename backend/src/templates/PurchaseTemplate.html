@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Pembelian</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Data Pembelian</h3>
+    <table cellpadding="5" cellspacing="0" width="100%">
+      {{#each purchases}}
+      <tr>
+        <td>Kode</td>
+        <td>:</td>
+        <td>{{this.code}}</td>
+      </tr>
+      <tr>
+        <td>Tanggal Pemesanan</td>
+        <td>:</td>
+        <td>{{this.date}}</td>
+      </tr>
+      <tr>
+        <td>Dibuat Oleh</td>
+        <td>:</td>
+        <td>{{this.user}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Total Harga</th>
+            </tr>
+            {{#each this.purchasedetail}}
+            <tr>
+              <td>{{this.id}}</td>
+              <td>{{this.productName}}</td>
+              <td>Rp {{this.price}}</td>
+              <td>{{this.qty}}</td>
+              <td class="text-right">Rp {{this.total}}</td>
+            </tr>
+            {{/each}}
+            <tr>
+              <td colspan="4" class="text-right">Total</td>
+              <td class="text-right">Rp {{this.total}}</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right">PPN</td>
+              <td class="text-right">Rp {{this.ppn}}</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right">Total Harga</td>
+              <td class="text-right">Rp {{this.grandTotal}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"><hr /></td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+@lastId=3
+@limit=2
+### get all supplier
+GET {{BASE_URL}}/suppliers?lastId={{lastId}}&limit={{limit}}
+Authorization: Bearer {{$global.accessToken}}
+
+### get supplier by id
+GET {{BASE_URL}}/suppliers/1
+Authorization: Bearer {{$global.accessToken}}
+
+### create supplier
+POST {{BASE_URL}}/suppliers
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: application/json
+{
+    "firstName": "Rasyid",
+    "lastName": "Sinaga",
+    "phone": "089621327693",
+    "email": "rasyidsinaga233@gmail.com",
+    "address": "Jl. Binjai Km15 Diski"
+}
+
+### update supplier
+PUT {{BASE_URL}}/suppliers/4
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: application/json
+{
+    "firstName": "Farhan",
+    "lastName": "Sinaga",
+    "phone": "089621327693",
+    "email": "rasyidsinaga233@gmail.com",
+    "address": "Jl. Binjai Km15 Diski"
+}
+
+### delete supplier
+DELETE {{BASE_URL}}/suppliers/2
+Authorization: Bearer {{$global.accessToken}}
+
+### generate pdf file
+GET {{BASE_URL}}/suppliers-pdf
+Authorization: Bearer {{$global.accessToken}}
+
+### generate excel supplier
+GET {{BASE_URL}}/suppliers-excel
+Authorization: Bearer {{$global.accessToken}}

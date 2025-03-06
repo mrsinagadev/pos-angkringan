@@ -1,0 +1,97 @@
+@lastId=80
+@limit=2
+### create product
+POST {{BASE_URL}}/products
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: multipart/form-data; boundary=WebKitFormBoundary
+
+--WebKitFormBoundary
+Content-Disposition: form-data; name="barcode"
+
+123456789
+--WebKitFormBoundary
+Content-Disposition: form-data; name="productName"
+
+Sample Product 2
+--WebKitFormBoundary
+Content-Disposition: form-data; name="qty"
+
+100
+--WebKitFormBoundary
+Content-Disposition: form-data; name="price"
+
+25000
+--WebKitFormBoundary
+Content-Disposition: form-data; name="kategoryId"
+
+1
+--WebKitFormBoundary
+Content-Disposition: form-data; name="supplierId"
+
+4
+--WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="contoh.png"
+Content-Type: image/png
+
+< ./contoh.png
+--WebKitFormBoundary--
+
+### get all products
+GET {{BASE_URL}}/products
+Authorization: Bearer {{$global.accessToken}}
+
+### get product by id
+GET {{BASE_URL}}/products/1
+Authorization: Bearer {{$global.accessToken}}
+
+### get product by category
+GET {{BASE_URL}}/products/category/1
+Authorization: Bearer {{$global.accessToken}}
+
+### update product
+PUT {{BASE_URL}}/products/1
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: multipart/form-data; boundary=WebKitFormBoundary
+
+--WebKitFormBoundary
+Content-Disposition: form-data; name="barcode"
+
+123456780
+--WebKitFormBoundary
+Content-Disposition: form-data; name="productName"
+
+Sample Product new
+--WebKitFormBoundary
+Content-Disposition: form-data; name="qty"
+
+100
+--WebKitFormBoundary
+Content-Disposition: form-data; name="price"
+
+25000
+--WebKitFormBoundary
+Content-Disposition: form-data; name="kategoryId"
+
+1
+--WebKitFormBoundary
+Content-Disposition: form-data; name="supplierId"
+
+4
+--WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="nugget.jpg"
+Content-Type: image/jpg
+
+< ./nugget.jpg
+--WebKitFormBoundary--
+
+### delete product
+DELETE {{BASE_URL}}/products/2
+Authorization: Bearer {{$global.accessToken}}
+
+### generate pdf
+GET {{BASE_URL}}/products-pdf
+Authorization: Bearer {{$global.accessToken}}
+
+### generate excel
+GET {{BASE_URL}}/products-excel
+Authorization: Bearer {{$global.accessToken}}

@@ -1,0 +1,56 @@
+### create purchase
+POST {{BASE_URL}}/purchases
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "date":"2024-12-19",
+    "note":"testing..",
+    "total":25000,
+    "ppn":2500,
+    "grandTotal":27500,
+    "userId": 1,
+    "detail":[
+      {
+        "product":{
+          "productId": 1,
+          "productName": "Sample Product",
+          "price": "25000",
+          "qty": 1,
+          "total": "25000"
+        },
+        "price":25000,
+        "qty": 1,
+        "totalPrice":25000
+      }
+  ]
+}
+
+### get all purchase
+GET {{BASE_URL}}/purchases
+Authorization: Bearer {{$global.accessToken}}
+
+### get purchase by id
+GET {{BASE_URL}}/purchases/1
+Authorization: Bearer {{$global.accessToken}}
+
+### generate pdf
+POST {{BASE_URL}}/purchases-pdf
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: application/json
+{
+    "startDate":"2024-01-01",
+    "endDate":"2024-12-30"
+}
+
+### generate excel
+POST {{BASE_URL}}/purchases-excel
+Authorization: Bearer {{$global.accessToken}}
+Content-Type: application/json
+{
+    "startDate":"2024-01-01",
+    "endDate":"2024-12-30"
+}
+
+### puchase yearly
+GET {{BASE_URL}}/purchase-year
+Authorization: Bearer {{$global.accessToken}}

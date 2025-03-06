@@ -1,0 +1,57 @@
+### create user
+POST {{BASE_URL}}/users
+Content-Type: application/json
+{
+    "name":"Farhan Sinaga",
+    "userName":"codepolitan",
+    "password":"1234",
+    "confirmPassword":"1234",
+    "role":"admin"
+}
+
+### user login
+POST {{BASE_URL}}/users/login
+Content-Type: application/json
+{
+    "userName":"rasyid",
+    "password":"140403"
+}
+
+{{
+    $global.accessToken=JSON.parse(response.body).acessToken;
+    $global.refreshToken=JSON.parse(response.body).refreshToken;
+}}
+
+### update user
+PUT {{BASE_URL}}/users/1
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "name":"Rasyid Sinaga",
+    "userName":"rasyid",
+    "password":"140403",
+    "confirmPassword":"140403",
+    "role":"admin"
+}
+
+### delete user
+DELETE {{BASE_URL}}/users/3
+Content-Type: application/json
+Authorization: Bearer {{$global.accessToken}}
+
+### get all user
+GET {{BASE_URL}}/users
+Authorization: Bearer {{$global.accessToken}}
+
+### get all user by id
+GET {{BASE_URL}}/users/1
+Authorization: Bearer {{$global.accessToken}}
+
+### refresh token
+GET {{BASE_URL}}/users/refresh
+Authorization: Bearer {{$global.refreshToken}}
+
+{{
+    $global.accessToken=JSON.parse(response.body).acessToken;
+    $global.refreshToken=JSON.parse(response.body).refreshToken;
+}}
