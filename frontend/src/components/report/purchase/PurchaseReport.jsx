@@ -121,14 +121,14 @@ const PurchaseReport = () => {
                   <Button
                     type="button"
                     onClick={downloadPDF}
-                    variant="primary me-1"
+                    variant="danger me-1"
                   >
                     <FaFilePdf /> Download PDF
                   </Button>
                   <Button
                     type="button"
                     onClick={downloadExcel}
-                    variant="primary"
+                    variant="success"
                   >
                     <FaFileExcel /> Download Excel
                   </Button>
